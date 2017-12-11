@@ -3,10 +3,14 @@
 <html>
 
 <head>
-<script src="./scripts/scripts.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+  <script src="./javascripts/script.js"></script>
+  <link href="./stylesheets/style.css" type="text/css" rel="stylesheet"></link>
   <script>
     // Initialize Firebase
     var config = {
@@ -22,21 +26,38 @@
 
 </head>
 
-<body ng-app="theClub" ng-controller="MainCtrl">
-<h1>Sign In With<h1>
-<ul style="list-style-type:none"> 
-<li><button onclick="googleSign()">Google</li>
+<body ng-app="theClub">
 
-<div>
-<h2>Sign Up With Email<h2>
-email:<br>
-  <input type="text" id="email">
-  <br>
-password:<br>
-  <input type="password" id="pwd" value="">
-  <br><br>
-  <input type="submit" value="Submit" onclick="emailSignUp()">
+<ui-view></ui-view>
 
+<script type="text/ng-template" id="/signin.html">
+  <div class="signin_methods">
+    <div class="google_signin">
+      <button onclick="googleSign()">Sign in with Google</button>
+    </div>
+    <div class="email_signin">
+      <h1>Sign-in with Email</h1>
+      <form ng-submit="emailSignIn()">
+        <input type="text" ng-model="email" placeholder="Email..."><br>
+        <input type="password" ng-model="password" placeholder="Password..."><br>
+        <input type="submit" value="Sign-In">
+      </form>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="/theclub.html">
+  <button class="signout" onclick="signOut()">Leave...</button>
+  <h1>Welcome to the <span>CLUB</span>...</h1>
+  <h4>I see you're on the list</h4>
+  <ul>
+    <li ng-repeat="person in thelist">
+      <div class="name">{{person.name}}</div>
+      <div class="email">{{person.email}}</div>
+    </li>
+  </ul>
+</script>
+<!--
 <h2>Sign in With Email</h2>
 email:<br>
   <input type="text" id="emailSignIn">
@@ -45,15 +66,9 @@ password:<br>
   <input type="password" id="pwdSignIn" value="">
   <br><br>
   <input type="submit" value="Submit" onclick="emailSignIn()">
- 
+
 </div>
-
-
- <input type="submit" value="Log Out" onclick="logOut()">
-<!-- The Modal -->
-
-
-
+ <input type="submit" value="Log Out" onclick="logOut()">-->
 </body>
 
 </html>

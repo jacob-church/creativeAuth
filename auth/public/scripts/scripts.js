@@ -29,15 +29,15 @@ console.log("sign out");
 
 
 function emailSignIn(){
-console.log('in sign in')
-if(!firebase.auth().currentUser){
-firebase.auth().signInWithEmailAndPassword(document.getElementById('emailSignIn').value, document.getElementById('pwdSignIn').value).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-alert(errorCode)  // ...
-});}
-else{
+  console.log('in sign in')
+  if(!firebase.auth().currentUser){
+    firebase.auth().signInWithEmailAndPassword(document.getElementById('emailSignIn').value, document.getElementById('pwdSignIn').value).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    alert(errorCode)  // ...
+  });}
+    else{
 firebase.auth().signOut();
 console.log('out')
 }
