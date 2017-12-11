@@ -1,5 +1,51 @@
 
 
 body {
-  background-color: #2d2e30;
+  background: #2d2e30;
+  padding: 50px;
+	color: ghostwhite;
+	font-family: "Trebuchet MS";
+}
+
+button {
+
+}
+
+.pulseit {
+  -webkit-animation: pulse linear .5s infinite;
+	animation: pulse linear .5s infinite;
+  color: lime;
+	height: 80px;
+	font-family: serif;
+}
+@-webkit-keyframes pulse {
+	0% { font-size:70px; margin: 10px; }
+	50% { font-size:72px; margin: 0px; text-shadow: 0 0 8px lime; }
+	100% { font-size:70px; margin: 10px;}
+}
+@keyframes pulse {
+	0% { font-size:70px; margin: 10px; }
+	50% { font-size:72px; margin: 0px; text-shadow: 0 0 8px lime; }
+	100% { font-size:70px; margin: 10px; }
+}
+.signin_methods {
+
+}
+
+
+.signout {
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	background: #2d2e30;
+  color: lime;
+  font-family: serif;
+  border-radius: 4px;
+  border-style: solid;
+  border-color: lime;
+  box-shadow: 0 0 6px lime;
+  text-shadow: 0 0 6px lime;
+}
+.club {
+	text-align: center;
 }
