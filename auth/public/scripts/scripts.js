@@ -21,6 +21,11 @@ function initApp(){
 })
 }
 
+function logOut()
+{
+firebase.auth().signOut();
+console.log("sign out");
+}
 
 
 function emailSignIn(){
