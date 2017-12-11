@@ -38,32 +38,35 @@ angular.module('theClub', ['ui.router', 'firebase'])
     $scope.authObj = $firebaseAuth()
 
     $scope.emailSignUp = function() {
-      $scope.authObj.$createUserWithEmailAndPassword()
-      .then(function(firebaseUser) {
-        console.log(firebaseUser);
-        $state.go('theclub')
-        $scope.$add({name:firebaseUser.displayName, email: firebaseUser.email});
-      })
-      .catch(function(err){
-        console.error("New user failed:", err);
-        alert('Failed to sign up', err)
-      });
+
     }
 
     $scope.emailSignIn = function() {
-      // TODO add a field for a display name, do some basic checks like
-      // if their email is of the right form (does firebase do this?)
-      // or if their password is long enough, save display name to
-      // firebase array and display in the club
-      $scope.authObj.$signInWithEmailAndPassword($scope.email,$scope.password)
-      .then(function(firebaseUser) {
-        console.log(firebaseUser)
-        $state.go('theclub')
-      })
-      .catch(function(err){
-        console.error("Authentication failed:", err);
-        alert(err.message);
-      });
+      if (onTheList($scope.thelist,$scope.email)) {
+        $scope.authObj.$signInWithEmailAndPassword($scope.email,$scope.password)
+        .then(function(firebaseUser) {
+          console.log(firebaseUser)
+          $state.go('theclub')
+        })
+        .catch(function(err){
+          console.error("Authentication failed:", err);
+          alert(err.message);
+        });
+      } else {
+        $scope.authObj.$createUserWithEmailAndPassword()
+        .then(function(firebaseUser) {
+          console.log(firebaseUser);
+          $state.go('theclub')
+          // TODO add a step where they can choose a display name
+          $scope.thelist.$add({name:firebaseUser.displayName, email: firebaseUser.email});
+        })
+        .catch(function(err){
+          console.error("New user failed:", err);
+          alert('Failed to sign up', err)
+        });
+      }
+
+
       $scope.email = '';
       $scope.password = '';
     };
