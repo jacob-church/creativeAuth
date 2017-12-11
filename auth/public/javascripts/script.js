@@ -7,6 +7,8 @@ function onTheList(list, email) {
   return false
 }
 
+colors = ['yellow', 'cyan', 'magenta', 'lime', 'red']
+
 angular.module('theClub', ['ui.router', 'firebase'])
 .config([
   '$stateProvider',
@@ -31,7 +33,8 @@ angular.module('theClub', ['ui.router', 'firebase'])
   '$state',
   '$firebaseAuth',
   '$firebaseArray',
-  function($scope, $state, $firebaseAuth, $firebaseArray) {
+  '$window',
+  function($scope, $state, $firebaseAuth, $firebaseArray, $window) {
     let ref = firebase.database().ref();
     $scope.thelist = $firebaseArray(ref);
 
@@ -50,23 +53,26 @@ angular.module('theClub', ['ui.router', 'firebase'])
         })
         .catch(function(err){
           console.error("Authentication failed:", err);
-          alert(err.message);
+          $window.alert(err.message);
         });
       } else {
-        $scope.authObj.$createUserWithEmailAndPassword()
+
+        $scope.authObj.$createUserWithEmailAndPassword($scope.email, $scope.password)
         .then(function(firebaseUser) {
-          console.log(firebaseUser);
-          $state.go('theclub')
+          console.log('getting a new user');
+          let name = $window.prompt("What do we call you?", "Mysterious Stranger")
+          console.log(name);
+          if (name != null) {
+            $state.go('theclub')
           // TODO add a step where they can choose a display name
-          $scope.thelist.$add({name:firebaseUser.displayName, email: firebaseUser.email});
+            $scope.thelist.$add({name:name, email: firebaseUser.email});
+          }
         })
         .catch(function(err){
           console.error("New user failed:", err);
-          alert('Failed to sign up', err)
+          $window.alert(err.message)
         });
       }
-
-
       $scope.email = '';
       $scope.password = '';
     };
@@ -97,4 +103,8 @@ angular.module('theClub', ['ui.router', 'firebase'])
       $scope.authObj.$signOut()
       $state.go('signin')
     };
+
+    $scope.getColor = function(index) {
+      return colors[index % colors.length];
+    }
   }])

@@ -56,7 +56,9 @@
     <h1 class="pulseit">the CLUB</h1>
     <h4>I see you're on the list...</h4>
     <ul>
-      <li ng-repeat="person in thelist">
+      <li ng-repeat="person in thelist" ng-style="{'color': '{{getColor($index)}}',
+    'box-shadow': '0 0 6px {{getColor($index)}}, inset 0 0 6px {{getColor($index)}}',
+    'text-shadow': '0 0 6px {{getColor($index)}}'}">
         <div class="name">{{person.name}}</div>
         <div class="email">{{person.email}}</div>
       </li>
