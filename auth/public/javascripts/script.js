@@ -1,3 +1,12 @@
+function onTheList(list, email) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].email == email) {
+      return true;
+    }
+  }
+  return false
+}
+
 angular.module('theClub', ['ui.router', 'firebase'])
 .config([
   '$stateProvider',
@@ -59,8 +68,29 @@ angular.module('theClub', ['ui.router', 'firebase'])
       $scope.password = '';
     };
 
+    $scope.googleSign = function() {
+      console.log($scope.authObj);
+      let provider = new firebase.auth.GoogleAuthProvider();
+      $scope.authObj.$signInWithPopup(provider)
+      .then(function(result) {
+        let user = result.user;
+        //check if thelist contains user, if not, add them
+        let member = {
+          name: user.displayName,
+          email: user.email
+        }
+        if (!onTheList($scope.thelist,member.email)) {
+          $scope.thelist.$add(member);
+        }
+        $state.go('theclub')
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+    }
 
     $scope.signOut = function() {
+      console.log('signing out');
       $scope.authObj.$signOut()
       $state.go('signin')
     };

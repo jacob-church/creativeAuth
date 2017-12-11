@@ -45,6 +45,7 @@ button {
   border-color: lime;
   box-shadow: 0 0 6px lime;
   text-shadow: 0 0 6px lime;
+	cursor: pointer;
 }
 .club {
 	text-align: center;

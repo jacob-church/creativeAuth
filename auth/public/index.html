@@ -35,7 +35,7 @@
   <audio autoplay loop src="sounds/muffled.mp3"></audio>
   <div class="signin_methods">
     <div class="google_signin">
-      <button onclick="googleSign()">Sign in with Google</button>
+      <button ng-click="googleSign()">Sign in with Google</button>
     </div>
     <div class="email_signin">
       <h1>Sign-in with Email</h1>
@@ -49,7 +49,7 @@
 </script>
 
 <script type="text/ng-template" id="/theclub.html">
-  <button class="signout" onclick="signOut()">Leave...</button>
+  <button class="signout" ng-click="signOut()">Leave...</button>
   <audio autoplay loop src="sounds/club.mp3"></audio>
   <div class="club">
     <h1 style="margin-bottom: 8px;">Welcome to </h1>
