@@ -48,7 +48,7 @@ angular.module('theClub', ['ui.router', 'firebase'])
       if (onTheList($scope.thelist,$scope.email)) {
         $scope.authObj.$signInWithEmailAndPassword($scope.email,$scope.password)
         .then(function(firebaseUser) {
-          console.log(firebaseUser)
+  //        console.log(firebaseUser)
           $state.go('theclub')
         })
         .catch(function(err){
@@ -61,7 +61,7 @@ angular.module('theClub', ['ui.router', 'firebase'])
         .then(function(firebaseUser) {
           console.log('getting a new user');
           let name = $window.prompt("What do we call you?", "Mysterious Stranger")
-          console.log(name);
+//          console.log(name);
           if (name != null) {
             $state.go('theclub')
           // TODO add a step where they can choose a display name
@@ -78,7 +78,7 @@ angular.module('theClub', ['ui.router', 'firebase'])
     };
 
     $scope.googleSign = function() {
-      console.log($scope.authObj);
+     // console.log($scope.authObj);
       let provider = new firebase.auth.GoogleAuthProvider();
       $scope.authObj.$signInWithPopup(provider)
       .then(function(result) {
@@ -99,7 +99,7 @@ angular.module('theClub', ['ui.router', 'firebase'])
     }
 
     $scope.signOut = function() {
-      console.log('signing out');
+      //console.log('signing out');
       $scope.authObj.$signOut()
       $state.go('signin')
     };
@@ -107,4 +107,15 @@ angular.module('theClub', ['ui.router', 'firebase'])
     $scope.getColor = function(index) {
       return colors[index % colors.length];
     }
+var init = function(){
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+//   console.log('user')
+  } else {
+//    console.log('no user')
+$state.go('signin') 
+ }
+});
+}
+init();
   }])
