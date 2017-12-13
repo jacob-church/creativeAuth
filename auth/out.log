@@ -1,0 +1,16 @@
+nohup: ignoring input
+[0mGET /sounds/club.mp3 [36m304 [0m6.970 ms - -[0m
+[0mGET / [36m304 [0m1.457 ms - -[0m
+[0mGET /javascripts/script.js [36m304 [0m0.811 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.706 ms - -[0m
+[0mGET / [36m304 [0m0.470 ms - -[0m
+[0mGET /javascripts/script.js [36m304 [0m0.284 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.199 ms - -[0m
+[0mGET /favicon.ico [33m404 [0m343.865 ms - 1265[0m
+[0mGET /sounds/muffled.mp3 [32m206 [0m4.057 ms - 6407451[0m
+[0mGET /sounds/club.mp3 [32m206 [0m1.579 ms - 9893231[0m
+[0mGET / [36m304 [0m1.809 ms - -[0m
+[0mGET /javascripts/script.js [32m200 [0m1.722 ms - 3339[0m
+[0mGET /stylesheets/style.css [32m200 [0m2.253 ms - 2252[0m
+[0mGET /sounds/muffled.mp3 [36m304 [0m0.443 ms - -[0m
+[0mGET /sounds/club.mp3 [36m304 [0m0.417 ms - -[0m

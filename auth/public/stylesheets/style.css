@@ -10,8 +10,8 @@ body {
 
 
 .pulseit {
-  -webkit-animation: pulse linear .5s infinite;
-	animation: pulse linear .5s infinite;
+  -webkit-animation: pulse linear .47s infinite;
+	animation: pulse linear .47s infinite;
   color: lime;
 	height: 80px;
 	font-family: serif;
@@ -99,7 +99,7 @@ button:hover {
 	border-color: aqua;
 	box-shadow: 0 0 12px cyan, inset 0 0 12px cyan;
 	background: transparent;
-	animation: strobe linear .5s infinite
+	animation: strobe linear .47s infinite
 }
 
 @keyframes strobe {
@@ -123,3 +123,4 @@ li {
 	border-width: 2px;
 	margin: 4px;
 }
+
